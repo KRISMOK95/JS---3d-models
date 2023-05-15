@@ -58,4 +58,8 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix();
 
   renderer.setSize(width, height);
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 939ecfedd3dfa1a911b5f9600925933df15efe10
