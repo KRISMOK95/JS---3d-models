@@ -88,4 +88,3 @@ onSnapshot(dataRef, (querySnapshot) => {
     dataDisplay.appendChild(listItem);
   });
 });
-
