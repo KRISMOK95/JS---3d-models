@@ -1,3 +1,23 @@
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getFirestore, collection, onSnapshot } from "firebase/firestore";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyD2s8Pqa6pG68N5Ztu7oV9ymT2KHsCinSo",
+  authDomain: "mt-aas.firebaseapp.com",
+  projectId: "mt-aas",
+  storageBucket: "mt-aas.appspot.com",
+  messagingSenderId: "822493253485",
+  appId: "1:822493253485:web:3944a00e63e7c3552a1464",
+  measurementId: "G-9Y41K5G1V3"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
 const container = document.getElementById('model-container');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 10000);
@@ -53,20 +73,19 @@ window.addEventListener('resize', () => {
   renderer.setSize(width, height);
 });
 
-// Add this section
-document.getElementById('standard-data-button').addEventListener('click', function() {
-  fetch('http://localhost:8000/standardData')
-  .then(response => response.json())
-  .then(data => {
-    const dataDisplay = document.getElementById('data-display');
-    dataDisplay.innerHTML = '';
+// Real-time data listener
+const dataRef = collection(db, "initial_data");
 
-    data.submodels.forEach(submodel => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `Temperature: ${submodel.temperature} degree`;
-        dataDisplay.appendChild(listItem);
-        });
-      })
-      .catch(error => console.error('Error:', error));
-    });
-    
+onSnapshot(dataRef, (querySnapshot) => {
+  const dataDisplay = document.getElementById('data-display');
+  dataDisplay.innerHTML = '';
+
+  querySnapshot.forEach((doc) => {
+    const temperature = doc.data().temperature;
+
+    const listItem = document.createElement('li');
+    listItem.textContent = `Temperature: ${temperature} degree`;
+    dataDisplay.appendChild(listItem);
+  });
+});
+
