@@ -1,6 +1,7 @@
-import { initializeApp } from "./node_modules/firebase/app/dist/index.esm.js";
-import { getAnalytics } from "./node_modules/firebase/analytics/dist/index.esm.js";
-import { getFirestore, collection, onSnapshot } from "./node_modules/firebase/firestore/dist/index.esm.js";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getFirestore, collection, onSnapshot } from "firebase/firestore";
+
 
 
 // Your web app's Firebase configuration
