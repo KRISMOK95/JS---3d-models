@@ -1,8 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, onSnapshot } from "firebase/firestore";
-
-
+import { initializeApp } from "C:/Users/kaxm4/PycharmProjects/JS---3d-models/node_modules/@firebase/app";
+import { getAnalytics } from "C:/Users/kaxm4/PycharmProjects/JS---3d-models/node_modules/@firebase/analytics";
+import { getFirestore, collection, onSnapshot } from "C:/Users/kaxm4/PycharmProjects/JS---3d-models/node_modules/@firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
